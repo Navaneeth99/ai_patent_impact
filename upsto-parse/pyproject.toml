@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "parse-uspto-xml"
+authors = [
+    {name = "Austin Walters", email = "austin@agw.io"},
+    {name = "Jeremy Goodsitt", email = "jeremy.goodsitt@gmail.com"},
+]
+description = "Reads XML of uspto patents."
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+
+dynamic = ["version", "readme", "dependencies"]
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+readme = {file = ["README.md"]}
+# Use parse_uspto_xml.version so importing for metadata does not run __init__.py
+# (which pulls in parse_patent/psycopg2 before build deps exist).
+version = {attr = "parse_uspto_xml.version.__version__"}
+
+[tool.setuptools]
+packages = ["parse_uspto_xml"]
+
+[project.scripts]
+parse-uspto-xml = "parse_uspto_xml.parse_patent:main"

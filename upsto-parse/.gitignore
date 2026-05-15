@@ -1,0 +1,13 @@
+**~
+*.xml
+config/**
+*.tsv
+**/__pycache__/**
+.venv/
+venv/
+**.egg-info
+logs/*
+data/*
+.env
+data/*
+.DS_Store
