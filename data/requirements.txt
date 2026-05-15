@@ -1,0 +1,8 @@
+# Extra deps for the feature pipeline. The parse_uspto_xml package
+# under ../upsto-parse contributes beautifulsoup4, lxml, psycopg2-binary,
+# python-dotenv via its own requirements.txt.
+pandas>=2.0
+pyarrow>=14.0
+matplotlib>=3.7
+numpy>=1.24
+tabulate>=0.9
