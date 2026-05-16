@@ -3,15 +3,15 @@
 Aggregate the per-week APPXML feature Parquet files into:
 
   1. Monthly time-series of key drafting-complexity metrics
-     (charts saved to ``<output-dir>/charts/``).
+     (``<output-dir>/charts/``; default: ``data/charts/`` when using defaults).
   2. Sanity checks: publications per week, missing weeks vs the USPTO
      Tuesday calendar, and overall distribution summaries
      (``<output-dir>/sanity.json`` and ``<output-dir>/distributions.csv``).
   3. Pre vs post late-2022 cohort comparison by CPC section, with
      bootstrap 95% CI on the difference of means
      (``<output-dir>/cohort_diff.csv``).
-  4. An auto-generated ``<output-dir>/findings.md`` that stitches the
-     headline numbers and chart links together for quick reading.
+  4. An auto-generated ``findings.md`` in the output directory (default: the
+     same folder as this script) that stitches headline numbers and chart links.
 
 Cohorts use ``application_date`` (when the draft was written) rather
 than ``publication_date`` (which lags ~18 months).
@@ -405,8 +405,8 @@ def main(argv: list[str] | None = None) -> int:
     )
     ap.add_argument(
         "--output-dir",
-        default=str(_THIS_DIR / "analysis"),
-        help="Directory to write charts, tables, and findings.md.",
+        default=str(_THIS_DIR),
+        help="Directory to write charts/, sanity.json, cohort_diff.csv, findings.md (default: this data folder).",
     )
     ap.add_argument("--pre-start", type=int, default=2018)
     ap.add_argument("--pre-end", type=int, default=2021)
